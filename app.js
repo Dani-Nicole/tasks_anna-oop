@@ -30,16 +30,16 @@ function addTask(event) {
 
     li.appendChild(a)
 
-    //create link element
-    const link = document.createElement('a');
-    //set href atribute
-    link.setAttribute('href', '#')
-    //add css style
-    link.className = 'secondary-content';
-    //add x text to link
-    link.appendChild(document.createTextNode('X'));
-    //add link to <li>
-    li.appendChild(link);
+    // //create link element
+    // const link = document.createElement('a');
+    // //set href atribute
+    // link.setAttribute('href', '#')
+    // //add css style
+    // link.className = 'secondary-content';
+    // //add x text to link
+    // link.appendChild(document.createTextNode('X'));
+    // //add link to <li>
+    // li.appendChild(link);
 
 
     const ul = document.querySelector('ul')
