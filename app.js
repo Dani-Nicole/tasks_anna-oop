@@ -5,6 +5,36 @@ const taskList = document.querySelector('.collection');
 form.addEventListener('submit', addTask)
 taskList.addEventListener('click', deleteTask);
 
+document.addEventListener('DOMContentLoaded', getTasks)
+
+function getTasks(event){
+    // add task to localStorage
+    let tasks // array for user inputs
+    if(localStorage.getItem('tasks') === null){
+        tasks = []
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'))
+    }
+    // loop array for each element value
+    tasks.forEach(function (task){
+        let li = document.createElement('li')
+        li.className = 'collection-item'
+        let liText = document.createTextNode(task)
+        li.appendChild(liText)
+
+        let a = document.createElement('a')
+        a.className = 'teal-text lighten-2 secondary-content'
+        let aText = document.createTextNode('X')
+        a.appendChild(aText)
+        a.setAttribute('href', '#')
+
+        li.appendChild(a)
+
+        ul.appendChild(li)
+    })
+}
+
+
 function deleteTask(e){
    if(e.target.textContent == 'X'){
        if(confirm("Do you want to delete this task?")){
