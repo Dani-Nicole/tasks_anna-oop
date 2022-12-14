@@ -15,6 +15,7 @@ function getTasks(event){
     } else {
         tasks = JSON.parse(localStorage.getItem('tasks'))
     }
+    console.log(tasks)
     // loop array for each element value
     tasks.forEach(function (task){
         let li = document.createElement('li')
@@ -30,17 +31,33 @@ function getTasks(event){
 
         li.appendChild(a)
 
-        ul.appendChild(li)
+        taskList.appendChild(li)
     })
 }
 
 
 function deleteTask(e){
-   if(e.target.textContent == 'X'){
-       if(confirm("Do you want to delete this task?")){
-           e.target.parentElement.remove();
-       }
-   }
+ if(e.target.textContent == 'X'){
+     if(confirm("Do you want to delete this task?")){
+         e.target.parentElement.remove();
+         let liText = e.target.parentElement.textContent
+         let liTextCorrect = liText.slice(0, liText.length-1)
+
+         let tasks //array for user inputs
+         if(localStorage.getItem('tasks') == null){
+             tasks = []
+         } else {
+             tasks = JSON.parse(localStorage.getItem('tasks'))
+         }
+
+         tasks.forEach(function(task, index){
+             if(task === liTextCorrect){
+                 tasks.splice(index, 1)
+             }
+         })
+         localStorage.setItem('tasks', JSON.stringify(tasks))
+     }
+ }
 }
 
 function addTask(event) {
